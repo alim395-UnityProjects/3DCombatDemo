@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb = null;
     public float moveSpeed = 5f;
     public float rotationSpeed = 720f;
-    private bool isSprinting;
+    private bool isSprinting = false;
 
     [SerializeField]
     private Transform cameraTransform;

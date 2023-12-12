@@ -7,6 +7,12 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerAnimate : MonoBehaviour
 {
     Animator animator;
+    string currentState;
+
+    // Animation States
+    const string PLAYER_IDLE = "StandingIdle";
+    const string PLAYER_MOVEMENT = "BasicMovement";
+    const string COMBAT_IDLE = "FightIdle";
 
     public void Awake()
     {
@@ -17,6 +23,26 @@ public class PlayerAnimate : MonoBehaviour
     void Start()
     {
         animator.SetBool("isCombat", false);
+        changeState(PLAYER_IDLE);
+    }
+
+    void changeState(string state)
+    {
+        if (currentState == null)
+        {
+            animator.Play(state);
+            currentState = state;
+            return;
+        }
+
+        //Stops playing animation twice
+        if (currentState == state)
+        {
+            return;
+        }
+
+        animator.Play(state);
+        currentState = state;
     }
 
     // Update is called once per frame
@@ -25,10 +51,12 @@ public class PlayerAnimate : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
         {
             animator.SetBool("isCombat", true);
+            animator.Play(COMBAT_IDLE);
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             animator.SetBool("isCombat", false);
+            animator.Play(PLAYER_IDLE);
         }
     }
 
@@ -43,10 +71,12 @@ public class PlayerAnimate : MonoBehaviour
                 inputMagnitude /= 2;
             }
             animator.SetFloat("InputMagnitude", inputMagnitude, 0.05f, Time.deltaTime);
+            changeState(PLAYER_MOVEMENT);
         }
         else
         {
             animator.SetBool("isWalking", false);
+            changeState(PLAYER_IDLE);
         }
     }
 }
