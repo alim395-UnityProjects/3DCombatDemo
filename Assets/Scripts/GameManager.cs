@@ -31,10 +31,28 @@ public class GameManager : MonoBehaviour
         {
             Reset();
         }
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            NextScene();
+        }
+        if(Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            PreviousScene();
+        }
     }
 
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PreviousScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

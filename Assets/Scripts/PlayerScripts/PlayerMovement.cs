@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController = null;
 
     Vector3 movementVector = Vector3.zero;
+    public Vector2 moveAxis;
 
     Rigidbody rb = null;
     public float moveSpeed = 5f;
     public float rotationSpeed = 720f;
     private bool isSprinting = false;
+    private bool isGrounded;
 
     [SerializeField]
     private Transform cameraTransform;
@@ -48,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        isGrounded = characterController.isGrounded;
         float magnitude = Mathf.Clamp01(movementVector.magnitude) * moveSpeed;
         float InputMagnitude = Mathf.Clamp01(movementVector.magnitude);
         if (movementVector != Vector3.zero)
@@ -66,10 +70,12 @@ public class PlayerMovement : MonoBehaviour
     private void Movement_performed(InputAction.CallbackContext value)
     {
         Vector2 tempVector = value.ReadValue<Vector2>();
-        movementVector = new Vector3(tempVector.x,0,tempVector.y);
+        movementVector = new Vector3(tempVector.x, 0, tempVector.y);
         movementVector = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementVector;
         movementVector.Normalize();
         Debug.Log(movementVector);
+        moveAxis.x = value.ReadValue<Vector2>().x;
+        moveAxis.y = value.ReadValue<Vector2>().y;
     }
 
     private void Movement_canceled(InputAction.CallbackContext value)

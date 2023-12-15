@@ -76,7 +76,14 @@ public class PlayerAnimate : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
-            changeState(PLAYER_IDLE);
+            if (animator.GetBool("isCombat"))
+            {
+                changeState(COMBAT_IDLE);
+            }
+            else
+            {
+                changeState(PLAYER_IDLE);
+            }
         }
     }
 }
