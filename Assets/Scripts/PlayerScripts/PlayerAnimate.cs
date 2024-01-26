@@ -7,6 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerAnimate : MonoBehaviour
 {
     Animator animator;
+    Animation anim;
     string currentState;
 
     // Animation States
@@ -26,7 +27,7 @@ public class PlayerAnimate : MonoBehaviour
         changeState(PLAYER_IDLE);
     }
 
-    void changeState(string state)
+    public void changeState(string state)
     {
         if (currentState == null)
         {
@@ -42,6 +43,27 @@ public class PlayerAnimate : MonoBehaviour
         }
 
         animator.Play(state);
+        currentState = state;
+    }
+
+    public void changeState(string state, AnimationClip clip)
+    {
+        if (currentState == null)
+        {
+            anim.clip = clip;
+            anim.Play();
+            currentState = state;
+            return;
+        }
+
+        //Stops playing animation twice
+        if (currentState == state)
+        {
+            return;
+        }
+
+        anim.clip = clip;
+        anim.Play();
         currentState = state;
     }
 

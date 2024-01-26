@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -15,8 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveAxis;
 
     Rigidbody rb = null;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3.5f;
+    public float sprintSpeed = 6.0f;
     public float rotationSpeed = 720f;
+    public float acceleration = 1;
+
     private bool isSprinting = false;
     private bool isGrounded;
 
@@ -53,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = characterController.isGrounded;
         float magnitude = Mathf.Clamp01(movementVector.magnitude) * moveSpeed;
+        if (isSprinting )
+        {
+            magnitude = Mathf.Clamp01(movementVector.magnitude) * sprintSpeed;
+        }
         float InputMagnitude = Mathf.Clamp01(movementVector.magnitude);
         if (movementVector != Vector3.zero)
         {
@@ -76,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(movementVector);
         moveAxis.x = value.ReadValue<Vector2>().x;
         moveAxis.y = value.ReadValue<Vector2>().y;
+        float tempMoveSpeed = this.characterController.velocity.magnitude;
+        Debug.Log("SPEED: " + tempMoveSpeed);
     }
 
     private void Movement_canceled(InputAction.CallbackContext value)
@@ -86,7 +96,9 @@ public class PlayerMovement : MonoBehaviour
     private void Sprint_performed(InputAction.CallbackContext obj)
     {
         isSprinting = true;
-        Debug.Log("Sprinting!");
+        float tempMoveSpeed = this.characterController.velocity.magnitude;
+        Debug.Log("SPEED: " + tempMoveSpeed);
+
     }
 
     private void Sprint_canceled(InputAction.CallbackContext obj)

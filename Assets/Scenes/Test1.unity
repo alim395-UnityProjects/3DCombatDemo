@@ -633,7 +633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.05273357, y: -0.000000017580549, z: 9.2837665e-10, w: 0.99860865}
+  m_LocalRotation: {x: 0.05273357, y: 0.000000017588228, z: -9.287823e-10, w: 0.99860865}
   m_LocalPosition: {x: 0, y: 2, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1884,7 +1884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060410186}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.052733563, y: -0.000000017182444, z: 9.073539e-10, w: 0.99860865}
+  m_LocalRotation: {x: 0.052733563, y: 0.000000017190299, z: -9.0776864e-10, w: 0.99860865}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3165,8 +3165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993625361}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.070889026, y: -0.000000016643247, z: 0.0000000011827992,
-    w: 0.9974842}
+  m_LocalRotation: {x: 0.070889026, y: 0.00000001683702, z: -0.0000000011965702, w: 0.9974842}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3308,6 +3307,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 820030945648724227, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
         type: 3}
+      propertyPath: sprintSpeed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 820030945648724227, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
+        type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 330585546}
@@ -3364,6 +3368,26 @@ PrefabInstance:
     - target: {fileID: 2292449571108697785, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968718822422334036, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
+        type: 3}
+      propertyPath: attackCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968718822422334036, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
+        type: 3}
+      propertyPath: defaultCombatAnimations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968718822422334036, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
+        type: 3}
+      propertyPath: defaultCombatAnimations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 9e9682b1a37529f4b96a8c051ae73a50, type: 2}
+    - target: {fileID: 5653997612012600216, guid: cfd3773ad5dd5dc49b9ea425c5023eaf,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
